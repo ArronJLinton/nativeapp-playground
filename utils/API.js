@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const api_url = "https://uw-playground-api.herokuapp.com/auth/login";
+const api_url = "http://localhost:3001";
 
 export default {
     login: (userObj) => {
+        console.log(userObj)
         return axios.post(`${api_url}/auth/login`, userObj)
     },
     logout: () => {
@@ -20,5 +21,13 @@ export default {
     },
     getUserBooks: (userId) => {
         return axios.get(`${api_url}/api/book/` + userId)
+    },
+    uploadPhoto: (data) => {
+        // const image = { image: data}
+     
+        return axios.post(`http://localhost:3001/upload`, {headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+          }, data})
     }
 }
