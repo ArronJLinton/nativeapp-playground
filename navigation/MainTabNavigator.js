@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import MyFavorites from '../screens/MyFavorites';
 import BookDetail from '../screens/BookDetail';
+import Chat from '../screens/Chat';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -47,8 +48,22 @@ MyFavoritesStack.navigationOptions = {
   ),
 };
 
+const ChatStack = createStackNavigator({
+  Chat: Chat,
+});
+
+Chat.navigationOptions = {
+  tabBarLabel: 'chat',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+};
 
 export default createBottomTabNavigator({
   HomeStack,
-  MyFavoritesStack
+  MyFavoritesStack,
+  ChatStack
 });

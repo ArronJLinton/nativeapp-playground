@@ -21,11 +21,13 @@ export default class SignUp extends Component {
 
         // create newUser object to be sent to database
         const newUser = { username, password, firstName, lastName, photo };
+       
 
-        API.registerUser(newUser)
+        // return fetch("http://localhost:3001/upload", options);
+        API.uploadPhoto(newUser)
             .then(res => {
                 console.log("SUCCESSFUL SIGNUP")
-                this.handleLoginRedirect(res.data)
+                // this.handleLoginRedirect(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -39,9 +41,10 @@ export default class SignUp extends Component {
             let result = await ImagePicker.launchImageLibraryAsync({
                 allowsEditing: true,
                 aspect: [4, 3],
+                base64: true
             });
     
-            console.log(result);
+            console.log('PHOTO AFTER IMAGE PICKER', result);
     
             if (!result.cancelled) {
                 this.setState({ photo: result.uri });
@@ -59,6 +62,30 @@ export default class SignUp extends Component {
         this.props.navigation.dispatch(navigateAction);
         // this.props.navigation.goBack();
       };
+
+       uploadPhoto = () => {
+          // const uriParts = photo.split('.');
+      // const fileType = uriParts[uriParts.length - 1];
+
+      // const formData = new FormData();
+
+      //     formData.append('photo', {
+      //       photo,
+      //       name: `photo.${fileType}`,
+      //       type: `image/${fileType}`,
+      //     });
+
+      //     console.log('PHOTO PRE UPLOAD: ', formData)
+      //     const options = {
+      //       method: 'POST',
+      //       body: formData,
+      //       headers: {
+      //         'Accept': 'application/json',
+      //         'Content-Type': 'multipart/form-data',
+      //       },
+    // };
+       }
+      
 
   render() {
     return (

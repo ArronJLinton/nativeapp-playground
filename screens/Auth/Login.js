@@ -10,6 +10,10 @@ export default class SignInScreen extends Component {
         password: ''
     }
 
+    componentDidMount(){
+      console.log('login component')
+    }
+
     goToMain = (userObj) => {
       const navigateAction = NavigationActions.navigate({
         routeName: "Home",
@@ -28,9 +32,10 @@ export default class SignInScreen extends Component {
       }
 
     login = () => {
+      // console.log(this.state)
         API.login(this.state)
         .then(res => this.goToMain(res.data))
-        .catch(err => console.log(err))
+        .catch(err => console.log('LOGIN ERROR: ', err))
     }
 
   render(){
